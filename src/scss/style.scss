@@ -1,0 +1,9 @@
+@import './settings/fonts';
+@import './settings/variables';
+
+body {
+  background-color: $background-color_light-grey;
+  font-family: $ttlakes;
+  font-style: normal;
+  font-weight: 400;
+}
