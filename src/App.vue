@@ -37,13 +37,16 @@ const vitaStore = useVitaStore();
 @import './scss/settings/variables';
 
 .header {
+  position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   background-color: #ffffff;
   margin-bottom: 40px;
-  padding: 16px 0;
+  box-shadow: 0 4px 12px 3px rgba(21, 153, 32, 0.1);
+  z-index: 2;
 
   .header_wrapper {
     display: flex;
@@ -51,6 +54,7 @@ const vitaStore = useVitaStore();
     justify-content: space-between;
     align-items: center;
     width: 1080px;
+    padding: 12px 0;
 
     .logo_img {
       cursor: pointer;
@@ -76,9 +80,9 @@ const vitaStore = useVitaStore();
     .search_input {
       border: none;
       padding: 8px 16px;
-      width: 300px;
+      width: 340px;
       border-radius: 30px;
-      outline: 1px solid $light_grey;
+      box-shadow: 0 4px 8px 3px rgba(21, 153, 32, 0.1);
     }
 
     .user_block {
@@ -104,6 +108,7 @@ const vitaStore = useVitaStore();
   max-width: 1080px;
   margin: 0;
   margin: 0 auto 32px;
+  padding-top: calc($header-default-height + 40px);
 
   .title_block {
     position: relative;
@@ -113,6 +118,7 @@ const vitaStore = useVitaStore();
     align-items: center;
     width: 100%;
     margin-bottom: 24px;
+    color: #5F5F5F;
 
     &::before {
       content: '';
@@ -130,7 +136,7 @@ const vitaStore = useVitaStore();
   .main_title {
     position: relative;
     margin: 0;
-    padding: 0 12px;
+    padding: 0 16px;
     background-color: $background-color_light-grey;
 
     &::after {
@@ -140,7 +146,7 @@ const vitaStore = useVitaStore();
       background-repeat: no-repeat;
       position: absolute;
       top: -6px;
-      right: -10px;
+      right: -7px;
       width: 24px;
       height: 24px;
       color: $green;
