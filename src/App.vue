@@ -3,12 +3,17 @@
     <div class="header_wrapper">
       <img class="logo_img" src="./assets/images/logo.png" alt="Логотип">
 
-      <form @submit.prevent="searchStore.getVitamins(searchVitamin)">
+      <!-- <form @submit.prevent="searchStore.getVitamins(searchVitamin)">
         <div class="input_wrapper">
           <input class="search_input" type="text" placeholder="Поиск товара" v-model="searchVitamin" />
         </div>
-      </form>
+      </form> -->
 
+      <form>
+        <div class="input_wrapper">
+          <input class="search_input" type="text" placeholder="Поиск товара" v-model="searchVitamin" @input="handleSearchInput" />
+        </div>
+      </form>
 
       <div class="user_block">
         <div class="cart">
@@ -49,7 +54,7 @@
 
     <div v-else class="card_wrapper">
       <Vitamins v-if="displayedVitamins.length > 0" v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
-      <div v-else>No vitamins available</div>
+      <p v-else>Нет данных для отображения</p>
     </div>
 
   </main>
@@ -68,9 +73,35 @@ const searchVitamin = ref('');
 const vitaStore = useVitaStore();
 const searchStore = useSearchStore();
 
+
 const displayedVitamins = computed(() => {
+  console.log('searchStore.vitamins====>>>', searchStore.vitamins);
   return searchStore.vitamins.length > 0 ? searchStore.vitamins : vitaStore.vitamins;
 })
+
+let searchTimer;
+let abortController;
+const debounceDelay = 500;
+
+const handleSearchInput = async () => {
+  clearTimeout(searchTimer);
+  if (abortController) {
+    abortController.abort();
+  }
+  abortController = new AbortController();
+  searchTimer = setTimeout(async () => {
+    try {
+      const response = await searchStore.getVitamins(searchVitamin.value, abortController.signal);
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Запрос был отменен');
+      } else {
+        console.error('Произошла ошибка:', error.message);
+      }
+    }
+  }, debounceDelay);
+};
+
 
 onMounted(() => {
   vitaStore.getVitamins();
@@ -89,7 +120,6 @@ onMounted(() => {
   justify-content: center;
   width: 100%;
   background-color: #ffffff;
-  margin-bottom: 40px;
   box-shadow: 0 4px 12px 3px rgba(21, 153, 32, 0.1);
   z-index: 2;
 
@@ -139,6 +169,16 @@ onMounted(() => {
       border-radius: 30px;
       box-shadow: 0 4px 8px 3px rgba(21, 153, 32, 0.1);
 
+      @keyframes changeOutlineColor {
+        0% {
+          outline: 1px solid transparent;
+        }
+
+        100% {
+          outline: 1px solid $green_light;
+        }
+      }
+
       &:hover {
         animation: changeOutlineColor 0.6s ease-out forwards;
       }
@@ -177,7 +217,6 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   max-width: 1080px;
-  margin: 0;
   margin: 0 auto 32px;
   padding-top: calc($header-default-height + 50px);
 
@@ -188,7 +227,7 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     color: #5F5F5F;
 
     &::before {
