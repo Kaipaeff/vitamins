@@ -3,33 +3,81 @@
     <div class="header_wrapper">
       <img class="logo_img" src="./assets/images/logo.png" alt="Логотип">
 
-      <div class="input_wrapper">
+      <!-- <div class="input_wrapper">
         <input class="search_input" type="text" placeholder="Поиск товара">
-      </div>
+      </div> -->
+
+      <form @submit.prevent="searchStore.getVitamins(searchVitamin)">
+        <div class="input_wrapper">
+          <input class="search_input" type="text" placeholder="Поиск товара" v-model="searchVitamin" />
+        </div>
+      </form>
+
 
       <div class="user_block">
-        <div class="cart"><img src="./assets/images/icons/bag.svg" alt="Корзина"></div>
-        <div class="favorites"><img src="./assets/images/icons/favorites.svg" alt="Избранное"></div>
-        <div class="login"><img src="./assets/images/icons/user.svg" alt="Личный кабинет"></div>
+        <div class="cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#5F5F5F" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
+            <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+          </svg>
+        </div>
+        <div class="favorites">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#5F5F5F" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+          </svg>
+        </div>
+        <div class="login">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#5F5F5F" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+          </svg>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="main_container">
+
     <div class="title_block">
       <h2 class="main_title">Витамины и минералы</h2>
     </div>
-    <div class="card_wrapper">
-      <Vitamin v-for="vitamin of vitaStore.vitamins" :key="vitamin.id" :vitamin="vitamin" />
+
+    <Loader v-if="vitaStore.loader || searchStore.loader" />
+
+    <div v-else class="card_wrapper">
+      <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
     </div>
+
   </main>
 </template>
 
-<script setup lang="ts">
-import Vitamin from './components/Vitamins.vue'
+<script setup>
+import Vitamins from './components/Vitamins.vue'
+import Loader from './components/Loader.vue';
 import { useVitaStore } from './store/VitaStore';
+import { useSearchStore } from './store/SearchStore';
+
+import { ref, onMounted, computed } from 'vue';
+
+const searchVitamin = ref('');
 
 const vitaStore = useVitaStore();
+const searchStore = useSearchStore();
+
+const displayedVitamins = computed(() => {
+  return searchStore.vitamins.length > 0 ? searchStore.vitamins : vitaStore.vitamins;
+})
+
+onMounted(() => {
+  vitaStore.getVitamins();
+})
 
 </script>
 
@@ -77,12 +125,30 @@ const vitaStore = useVitaStore();
       }
     }
 
+    @keyframes changeOutlineColor {
+      0% {
+        outline: 1px solid transparent;
+      }
+
+      100% {
+        outline: 1px solid $green_light;
+      }
+    }
+
     .search_input {
       border: none;
       padding: 8px 16px;
       width: 340px;
       border-radius: 30px;
       box-shadow: 0 4px 8px 3px rgba(21, 153, 32, 0.1);
+
+      &:hover {
+        animation: changeOutlineColor 0.6s ease-out forwards;
+      }
+
+      &:focus {
+        outline: 1px solid $green_light;
+      }
     }
 
     .user_block {
@@ -91,10 +157,18 @@ const vitaStore = useVitaStore();
       gap: 24px;
       margin-left: 81px;
 
-      img {
+      svg {
         cursor: pointer;
         width: 28px;
         height: 28px;
+
+        path {
+          transition: stroke 0.3s ease-in-out, stroke-width 0.3s ease-in-out;
+        }
+
+        &:hover {
+          stroke: $green;
+        }
       }
     }
   }
@@ -108,7 +182,9 @@ const vitaStore = useVitaStore();
   max-width: 1080px;
   margin: 0;
   margin: 0 auto 32px;
-  padding-top: calc($header-default-height + 40px);
+  // padding-top: calc($header-default-height + 40px); //вернуть, когда Сёрч перенесу в Хэдер
+  padding-top: 140px;
+
 
   .title_block {
     position: relative;

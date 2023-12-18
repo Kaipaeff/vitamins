@@ -24,6 +24,11 @@ const props = defineProps({
     type: Object,
     required: true,
     default: () => { }
+  },
+  isSearch: {            // убрать позже, если не пригодится мысль!!!
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 </script>
