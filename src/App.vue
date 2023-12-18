@@ -3,10 +3,6 @@
     <div class="header_wrapper">
       <img class="logo_img" src="./assets/images/logo.png" alt="Логотип">
 
-      <!-- <div class="input_wrapper">
-        <input class="search_input" type="text" placeholder="Поиск товара">
-      </div> -->
-
       <form @submit.prevent="searchStore.getVitamins(searchVitamin)">
         <div class="input_wrapper">
           <input class="search_input" type="text" placeholder="Поиск товара" v-model="searchVitamin" />
@@ -52,7 +48,8 @@
     <Loader v-if="vitaStore.loader || searchStore.loader" />
 
     <div v-else class="card_wrapper">
-      <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
+      <Vitamins v-if="displayedVitamins.length > 0" v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
+      <div v-else>No vitamins available</div>
     </div>
 
   </main>
@@ -182,9 +179,7 @@ onMounted(() => {
   max-width: 1080px;
   margin: 0;
   margin: 0 auto 32px;
-  // padding-top: calc($header-default-height + 40px); //вернуть, когда Сёрч перенесу в Хэдер
-  padding-top: 140px;
-
+  padding-top: calc($header-default-height + 50px);
 
   .title_block {
     position: relative;

@@ -7,13 +7,16 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../scss/settings/_variables.scss';
+
 .loader {
   display: block;
   margin: auto;
   position: relative;
   width: 104px;
   height: 80px;
+  margin-top: 200px;
 }
 
 .loader div {
@@ -21,7 +24,8 @@
   position: absolute;
   left: 8px;
   width: 16px;
-  background: #cef;
+  /* background: #cef; */
+  background: $green_light;
   animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
