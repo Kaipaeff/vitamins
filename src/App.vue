@@ -3,12 +3,6 @@
     <div class="header_wrapper">
       <img class="logo_img" src="./assets/images/logo.png" alt="Логотип">
 
-      <!-- <form @submit.prevent="searchStore.getVitamins(searchVitamin)">
-        <div class="input_wrapper">
-          <input class="search_input" type="text" placeholder="Поиск товара" v-model="searchVitamin" />
-        </div>
-      </form> -->
-
       <form>
         <div class="input_wrapper">
           <input class="search_input" type="text" placeholder="Поиск товара" v-model="searchVitamin" @input="handleSearchInput" />
@@ -129,14 +123,36 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     width: 1080px;
-    padding: 12px 0;
+    padding: 24px 0;
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width: 1120px) {
+      padding: 24px;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px 24px;
+      gap: 14px;
+    }
 
     .logo_img {
       cursor: pointer;
+      width: 132px;
+      transition: all 0.3s ease-in-out;
+
+      @media (max-width: 768px) {
+        display: flex;
+        align-self: flex-start;
+        width: 130px;
+      }
     }
 
     .input_wrapper {
       position: relative;
+      transition: all 0.3s ease-in-out;
 
       &::before {
         content: "";
@@ -168,6 +184,15 @@ onMounted(() => {
       width: 340px;
       border-radius: 30px;
       box-shadow: 0 4px 8px 3px rgba(21, 153, 32, 0.1);
+      transition: all 0.3s ease-in-out;
+
+      @media (max-width: 768px) {
+        box-shadow: none;
+        outline: 1px solid $light_grey;
+        box-shadow: none;
+        outline: 1px solid $light_grey;
+        width: 280px;
+      }
 
       @keyframes changeOutlineColor {
         0% {
@@ -192,12 +217,26 @@ onMounted(() => {
       display: flex;
       flex-direction: row;
       gap: 24px;
-      margin-left: 81px;
+      transition: all 0.3s ease-in-out;
+
+      @media (max-width: 768px) {
+        position: absolute;
+        top: 30px;
+        right: 24px;
+        top: 21px;
+        right: 20px;
+        gap: 16px;
+      }
 
       svg {
         cursor: pointer;
         width: 28px;
         height: 28px;
+
+        @media (max-width: 768px) {
+          width: 24px;
+          height: 24px;
+        }
 
         path {
           transition: stroke 0.3s ease-in-out, stroke-width 0.3s ease-in-out;
@@ -209,7 +248,6 @@ onMounted(() => {
       }
     }
   }
-
 }
 
 .main_container {
@@ -218,7 +256,12 @@ onMounted(() => {
   align-items: center;
   max-width: 1080px;
   margin: 0 auto 32px;
-  padding-top: calc($header-default-height + 50px);
+  padding-top: calc($header-default-height + 20px);
+  transition: all 0.3s ease-in-out;
+
+  @media (max-width: 768px) {
+    padding-top: calc($header-default-height + 50px);
+  }
 
   .title_block {
     position: relative;
@@ -236,6 +279,8 @@ onMounted(() => {
       position: absolute;
       border-bottom: 1px solid #38ce38;
       top: 15px;
+      top: 11px;
+
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
@@ -249,10 +294,15 @@ onMounted(() => {
     padding: 0 16px;
     background-color: $background-color_light-grey;
 
+    @media (max-width: 768px) {
+      font-size: 18px;
+      padding: 0 8px;
+    }
+
     &::after {
       content: "";
       background: url("./assets/images/icons/leaf.svg");
-      background-size: auto;
+      background-size: contain;
       background-repeat: no-repeat;
       position: absolute;
       top: -6px;
@@ -260,6 +310,13 @@ onMounted(() => {
       width: 24px;
       height: 24px;
       color: $green;
+
+      @media (max-width: 768px) {
+        top: -5px;
+        right: -6px;
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 
@@ -275,10 +332,23 @@ onMounted(() => {
 
     @media (max-width: 1120px) {
       grid-template-columns: repeat(2, 340px);
+      justify-items: center
     }
 
-    @media (max-width: 740px) {
-      grid-template-columns: repeat(1, 340px);
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 320px);
+    }
+
+    @media (max-width: 685px) {
+      grid-template-columns: repeat(2, 280px);
+    }
+
+    @media (max-width: 620px) {
+      grid-template-columns: repeat(1, 320px);
+    }
+
+    @media (max-width: 424px) {
+      grid-template-columns: repeat(1, 280px);
     }
   }
 }
