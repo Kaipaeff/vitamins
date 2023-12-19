@@ -71,9 +71,10 @@ const searchStore = useSearchStore();
 
 
 const displayedVitamins = computed(() => {
-  console.log('searchStore.vitamins====>>>', searchStore.vitamins);
+  //console.log('searchStore.vitamins====>>>', searchStore.vitamins);
   return searchStore.vitamins.length > 0 ? searchStore.vitamins : vitaStore.vitamins;
 })
+
 
 let searchTimer;
 let abortController;
@@ -104,6 +105,7 @@ onMounted(() => {
 })
 
 </script>
+
 
 <style lang="scss" scoped>
 @import './scss/settings/variables';
