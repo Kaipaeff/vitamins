@@ -2,6 +2,9 @@
 @import './settings/variables';
 
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: $background-color_light-grey;
   font-family: $ttlakes;
   font-style: normal;
