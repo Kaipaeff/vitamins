@@ -39,18 +39,20 @@
   </header>
 
   <main class="main_container">
+    <div class="main_wrapper">
 
-    <div class="title_block">
-      <h2 class="main_title">Витамины и минералы</h2>
+      <div class="title_block">
+        <h2 class="main_title">Витамины и минералы</h2>
+      </div>
+
+      <Loader v-if="vitaStore.loader || searchStore.loader" />
+
+      <div v-else class="card_wrapper">
+        <Vitamins v-if="displayedVitamins.length > 0" v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
+        <p v-else>Нет данных для отображения</p>
+      </div>
+
     </div>
-
-    <Loader v-if="vitaStore.loader || searchStore.loader" />
-
-    <div v-else class="card_wrapper">
-      <Vitamins v-if="displayedVitamins.length > 0" v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
-      <p v-else>Нет данных для отображения</p>
-    </div>
-
   </main>
 </template>
 
@@ -109,6 +111,7 @@ onMounted(() => {
 .header {
   position: fixed;
   top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,25 +131,22 @@ onMounted(() => {
 
     @media (max-width: 1120px) {
       padding: 24px;
-      width: 100%;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 632px) {
       flex-direction: column;
-      gap: 10px;
-      padding: 12px 24px;
-      gap: 14px;
+      gap: 12px;
+      padding: 16px 24px 12px;
     }
 
     .logo_img {
       cursor: pointer;
-      width: 132px;
+      width: 148px;
       transition: all 0.3s ease-in-out;
 
-      @media (max-width: 768px) {
-        display: flex;
+      @media (max-width: 632px) {
         align-self: flex-start;
-        width: 130px;
+        width: 128px;
       }
     }
 
@@ -157,7 +157,7 @@ onMounted(() => {
       &::before {
         content: "";
         background: url("./assets/images/icons/search.svg");
-        background-size: auto;
+        background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
         top: 5px;
@@ -165,6 +165,12 @@ onMounted(() => {
         width: 24px;
         height: 24px;
         color: $green;
+
+        @media (max-width: 632px) {
+          top: 4px;
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
@@ -187,11 +193,13 @@ onMounted(() => {
       transition: all 0.3s ease-in-out;
 
       @media (max-width: 768px) {
+        max-width: 280px;
+      }
+
+      @media (max-width: 632px) {
         box-shadow: none;
         outline: 1px solid $light_grey;
-        box-shadow: none;
-        outline: 1px solid $light_grey;
-        width: 280px;
+        padding: 4px 16px;
       }
 
       @keyframes changeOutlineColor {
@@ -216,27 +224,21 @@ onMounted(() => {
     .user_block {
       display: flex;
       flex-direction: row;
-      gap: 24px;
+      gap: 32px;
       transition: all 0.3s ease-in-out;
 
-      @media (max-width: 768px) {
+      @media (max-width: 632px) {
+        align-self: flex-end;
         position: absolute;
-        top: 30px;
-        right: 24px;
-        top: 21px;
+        top: 22px;
         right: 20px;
-        gap: 16px;
+        gap: 22px;
       }
 
       svg {
         cursor: pointer;
         width: 28px;
         height: 28px;
-
-        @media (max-width: 768px) {
-          width: 24px;
-          height: 24px;
-        }
 
         path {
           transition: stroke 0.3s ease-in-out, stroke-width 0.3s ease-in-out;
@@ -254,13 +256,25 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1080px;
-  margin: 0 auto 32px;
-  padding-top: calc($header-default-height + 20px);
-  transition: all 0.3s ease-in-out;
+  width: 100%;
 
-  @media (max-width: 768px) {
+  .main_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1080px;
+    margin-bottom: 64px;
     padding-top: calc($header-default-height + 50px);
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width: 1120px) {
+      padding: calc($header-default-height + 50px) 24px 0 24px;
+      width: 100%;
+    }
+
+    @media (max-width: 632px) {
+      padding-top: calc($header-default-height + 40px);
+    }
   }
 
   .title_block {
@@ -272,6 +286,10 @@ onMounted(() => {
     width: 100%;
     margin-bottom: 32px;
     color: #5F5F5F;
+
+    @media (max-width: 632px) {
+      margin-bottom: 24px;
+    }
 
     &::before {
       content: '';
@@ -305,7 +323,7 @@ onMounted(() => {
       background-size: contain;
       background-repeat: no-repeat;
       position: absolute;
-      top: -6px;
+      top: -12px;
       right: -7px;
       width: 24px;
       height: 24px;
@@ -322,34 +340,39 @@ onMounted(() => {
 
   .card_wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 340px);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     justify-content: space-between;
     margin: 0;
     padding: 0;
-    margin-bottom: 24px;
+    transition: all 0.3s ease-in-out;
+
 
     @media (max-width: 1120px) {
-      grid-template-columns: repeat(2, 340px);
+      grid-template-columns: repeat(3, 1fr);
       justify-items: center
     }
 
+    @media (max-width: 824px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 320px);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @media (max-width: 685px) {
-      grid-template-columns: repeat(2, 280px);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @media (max-width: 620px) {
-      grid-template-columns: repeat(1, 320px);
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 424px) {
-      grid-template-columns: repeat(1, 280px);
+    @media (max-width: 578px) {
+      grid-template-columns: repeat(1, 2fr);
     }
   }
+
 }
 </style>

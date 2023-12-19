@@ -36,27 +36,11 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 340px;
+  max-width: 340px;
   padding: 16px;
   border-radius: 16px;
   background-color: $white;
   box-shadow: 0 3px 8px 0px rgba(14, 24, 80, 0.2);
-
-  @media (max-width: 768px) {
-    max-width: 320px;
-  }
-
-  @media (max-width: 685px) {
-    max-width: 280px;
-  }
-
-  @media (max-width: 620px) {
-    max-width: 320px;
-  }
-
-  @media (max-width: 424px) {
-    width: 280px;
-  }
 
   &:hover {
     box-shadow: 0 6px 12px 4px rgba(21, 153, 32, 0.2);
