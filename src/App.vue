@@ -11,28 +11,21 @@
 
       <div class="user_block">
         <div class="cart">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#5F5F5F" fill="none"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path
-              d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
-            <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
-          </svg>
+          <el-icon :size="28" color="#5F5F5F">
+            <Goods />
+          </el-icon>
         </div>
         <div class="favorites">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#5F5F5F" fill="none"
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.6" stroke="#5F5F5F" fill="none"
             stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
           </svg>
         </div>
         <div class="login">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#5F5F5F" fill="none"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-          </svg>
+          <el-icon :size="28" color="#5F5F5F">
+            <User />
+          </el-icon>
         </div>
       </div>
     </div>
@@ -48,7 +41,7 @@
       <Loader v-if="vitaStore.loader || searchStore.loader" />
 
       <div v-else class="card_wrapper">
-        <Vitamins v-if="displayedVitamins.length > 0" v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
+        <Vitamins v-if="displayedVitamins" v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
         <p v-else>Нет данных для отображения</p>
       </div>
 
@@ -71,7 +64,6 @@ const searchStore = useSearchStore();
 
 
 const displayedVitamins = computed(() => {
-  //console.log('searchStore.vitamins====>>>', searchStore.vitamins);
   return searchStore.vitamins.length > 0 ? searchStore.vitamins : vitaStore.vitamins;
 })
 
@@ -239,14 +231,15 @@ onMounted(() => {
 
       svg {
         cursor: pointer;
-        width: 28px;
-        height: 28px;
+
+        transition: color 0.3s ease-in-out;
 
         path {
           transition: stroke 0.3s ease-in-out, stroke-width 0.3s ease-in-out;
         }
 
         &:hover {
+          color: $green;
           stroke: $green;
         }
       }
@@ -300,7 +293,6 @@ onMounted(() => {
       border-bottom: 1px solid #38ce38;
       top: 15px;
       top: 11px;
-
       left: 50%;
       transform: translateX(-50%);
       width: 100%;

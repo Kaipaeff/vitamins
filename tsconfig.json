@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "types": [
+      "vue"
+    ],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -20,7 +23,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    // "noImplicitAny": false,
+    "allowJs": true,
   },
   "include": [
     "src/**/*.ts",
@@ -31,5 +36,5 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
 }
