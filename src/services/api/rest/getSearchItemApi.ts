@@ -12,6 +12,8 @@ export interface SearchItem {
 export const getSearchItemApi = async (search: string, abortController: AbortController): Promise<SearchItem[]> => {
   const signal = abortController.signal;
   try {
+    await new Promise(resolve => setTimeout(resolve, 700));
+
     const res = await fetch(`${url}${search}*`, { signal });
     if (!res.ok) {
       console.error(`Failed to fetch search. Status: ${res.status}`);

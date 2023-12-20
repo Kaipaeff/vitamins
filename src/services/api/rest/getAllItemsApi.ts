@@ -11,6 +11,7 @@ export interface Items {
 
 export const getAllItemsApi = async (): Promise<Items[]> => {
   try {
+    await new Promise(resolve => setTimeout(resolve, 900));
     const res = await fetch(url);
     if (!res.ok) {
       console.error(`Failed to fetch vitamins. Status: ${res.status}`);

@@ -38,11 +38,19 @@
         <h2 class="main_title">Витамины и минералы</h2>
       </div>
 
-      <Loader v-if="vitaStore.loader || searchStore.loader" />
+      <!-- <Loader v-if="vitaStore.loader || searchStore.loader" /> -->
 
-      <div v-else class="card_wrapper">
-        <Vitamins v-if="displayedVitamins" v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
-        <p v-else>Нет данных для отображения</p>
+      <div class="card_wrapper">
+        <template v-if="vitaStore.loader || searchStore.loader">
+          <Skeleton v-for="skeleton in 6" />
+        </template>
+
+        <template v-else>
+          <template v-if="displayedVitamins && displayedVitamins.length > 0">
+            <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
+          </template>
+          <p v-else>Нет данных для отображения</p>
+        </template>
       </div>
 
     </div>
@@ -51,9 +59,10 @@
 
 <script setup>
 import Vitamins from './components/Vitamins.vue'
-import Loader from './components/Loader.vue';
+// import Loader from './components/Loader.vue';
 import { useVitaStore } from './store/VitaStore';
 import { useSearchStore } from './store/SearchStore';
+import Skeleton from './components/Skeleton.vue';
 
 import { ref, onMounted, computed } from 'vue';
 
@@ -339,6 +348,7 @@ onMounted(() => {
     justify-content: space-between;
     margin: 0;
     padding: 0;
+    width: 100%;
     transition: all 0.3s ease-in-out;
 
 
