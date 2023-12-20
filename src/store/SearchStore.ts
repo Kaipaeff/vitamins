@@ -1,16 +1,15 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { getSearchItemApi, SearchItem } from '../services/api/rest/getSearchItemApi';
+import { getSearchItemApi } from '../services/api/rest/getSearchItemApi';
+import { Items } from '../services/api/rest/getAllItemsApi';
 
 export const useSearchStore = defineStore("searchStore", () => {
   const loader = ref(false);
-  const vitamins = ref<SearchItem[]>([]);
+  const vitamins = ref<Items[]>([]);
   let abortController: AbortController;
 
-  const getVitamins = async (search: string) => {
-    if (abortController) {
-      abortController.abort();
-    }
+  const getSearchVitamins = async (search: string) => {
+    abortController?.abort();
     abortController = new AbortController();
     loader.value = true;
     try {
@@ -21,6 +20,6 @@ export const useSearchStore = defineStore("searchStore", () => {
   };
 
   return {
-    loader, vitamins, getVitamins
+    loader, vitamins, getSearchVitamins
   }
 })
