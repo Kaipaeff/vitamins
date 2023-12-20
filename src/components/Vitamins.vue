@@ -19,6 +19,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+// import { useVitaStore } from '../store/VitaStore';
+
 const props = defineProps({
   vitamin: {
     type: Object,
@@ -26,6 +29,10 @@ const props = defineProps({
     default: () => { }
   }
 })
+
+// const handleCardClick = () => {
+//   useVitaStore.getOneItem(props.vitamin.id);
+// }
 </script>
 
 <style lang="scss" scoped>

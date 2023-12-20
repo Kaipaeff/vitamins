@@ -23,4 +23,5 @@ export const getAllItemsApi = async (): Promise<Items[]> => {
     console.error('Error fetching vitamins:', error.message);
     throw error;
   }
-}
+};
+

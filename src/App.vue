@@ -47,7 +47,7 @@
 
         <template v-else>
           <template v-if="displayedVitamins && displayedVitamins.length > 0">
-            <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" />
+            <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" @click="handleCardClick(vitamin)" />
           </template>
           <p v-else>Нет данных для отображения</p>
         </template>
@@ -63,6 +63,7 @@ import Vitamins from './components/Vitamins.vue'
 import { useVitaStore } from './store/VitaStore';
 import { useSearchStore } from './store/SearchStore';
 import Skeleton from './components/Skeleton.vue';
+import { getOneItemApi } from './services/api/rest/getOneItemApi';
 
 import { ref, onMounted, computed } from 'vue';
 
@@ -83,13 +84,12 @@ const debounceDelay = 500;
 
 const handleSearchInput = async () => {
   clearTimeout(searchTimer);
-  if (abortController) {
-    abortController.abort();
-  }
+  abortController?.abort();
   abortController = new AbortController();
+
   searchTimer = setTimeout(async () => {
     try {
-      const response = await searchStore.getVitamins(searchVitamin.value, abortController.signal);
+      const response = await searchStore.getSearchVitamins(searchVitamin.value, abortController.signal);
     } catch (error) {
       if (error.name === 'AbortError') {
         console.log('Запрос был отменен');
@@ -100,9 +100,18 @@ const handleSearchInput = async () => {
   }, debounceDelay);
 };
 
+const handleCardClick = async (item) => {
+  try {
+    const response = await getOneItemApi(item.id);
+    console.log('Детали витамина:', response);
+  } catch (error) {
+    console.error('Ошибка при получении деталей витамина:', error.message);
+  }
+}
+
 
 onMounted(() => {
-  vitaStore.getVitamins();
+  vitaStore.getAllVitamins();
 })
 
 </script>
