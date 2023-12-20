@@ -1,4 +1,6 @@
-<template>
+<!--! Изначальный вариант. Оставляю для на случай, если пригодится -->
+
+<!-- <template>
   <div class="loader">
     <div></div>
     <div></div>
@@ -24,7 +26,6 @@
   position: absolute;
   left: 8px;
   width: 16px;
-  /* background: #cef; */
   background: $text_grey;
   animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
@@ -61,4 +62,4 @@
     height: 32px;
   }
 }
-</style>
+</style> -->
