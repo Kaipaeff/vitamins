@@ -4,6 +4,7 @@ import { Items } from "./getAllItemsApi";
 
 export const getOneItemApi = async (id: number): Promise<Items> => {
   try {
+    await new Promise(resolve => setTimeout(resolve, 900));
     const res = await fetch(`${url}${id}`);
     if (!res.ok) {
       console.error(`Failed to fetch vitamin details.Status: ${res.status} `);

@@ -41,7 +41,7 @@
       <!-- <Loader v-if="vitaStore.loader || searchStore.loader" /> -->
 
       <div class="card_wrapper">
-        <template v-if="vitaStore.loader || searchStore.loader">
+        <!-- <template v-if="vitaStore.loader || searchStore.loader">
           <Skeleton v-for="skeleton in 6" />
         </template>
 
@@ -50,6 +50,23 @@
             <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" @click="handleCardClick(vitamin)" />
           </template>
           <p v-else>Нет данных для отображения</p>
+        </template> -->
+
+        <template v-if="vitaStore.oneVitamin">
+          <div>ТУТ БУДЕТ КАРТОЧКА ТОВАРА, когда-нибудь</div>
+        </template>
+
+        <template v-else>
+          <template v-if="vitaStore.loader || searchStore.loader">
+            <Skeleton v-for="skeleton in 6" />
+          </template>
+
+          <template v-else>
+            <template v-if="displayedVitamins && displayedVitamins.length > 0">
+              <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" @click="handleCardClick(vitamin)" />
+            </template>
+            <p v-else>Нет данных для отображения</p>
+          </template>
         </template>
       </div>
 
@@ -100,9 +117,9 @@ const handleSearchInput = async () => {
   }, debounceDelay);
 };
 
-const handleCardClick = async (item) => {
+const handleCardClick = async (vitamin) => {
   try {
-    const response = await getOneItemApi(item.id);
+    const response = await vitaStore.getOneVitamin(vitamin.id);
     console.log('Детали витамина:', response);
   } catch (error) {
     console.error('Ошибка при получении деталей витамина:', error.message);
