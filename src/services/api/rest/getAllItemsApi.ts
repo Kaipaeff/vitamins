@@ -7,6 +7,7 @@ export interface Items {
   price: string;
   imageUrl: string;
   prod: string;
+  points: number;
 }
 
 export const getAllItemsApi = async (): Promise<Items[]> => {

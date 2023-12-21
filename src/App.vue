@@ -11,9 +11,11 @@
 
       <div class="user_block">
         <div class="cart">
-          <el-icon :size="28" color="#5F5F5F">
-            <Goods />
-          </el-icon>
+          <el-badge :value="0" class="item" type="warning">
+            <el-icon :size="28" color="#5F5F5F">
+              <Goods />
+            </el-icon>
+          </el-badge>
         </div>
         <div class="favorites">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.6" stroke="#5F5F5F" fill="none"
@@ -35,21 +37,28 @@
     <div class="main_wrapper">
 
       <div class="title_block">
-        <h2 class="main_title">Витамины и минералы</h2>
+        <h2 class="main_title" v-if="!vitaStore.oneVitamin || vitaStore.oneVitamin.length === 0">Витамины и минералы</h2>
+        <h2 class="main_title" v-else>{{ vitaStore.oneVitamin[0].name }}</h2>
       </div>
 
       <!-- <Loader v-if="vitaStore.loader || searchStore.loader" /> -->
 
       <div class="card_wrapper">
-        <template v-if="vitaStore.loader || searchStore.loader">
-          <Skeleton v-for="skeleton in 6" />
+        <template v-if="vitaStore.oneVitamin">
+          <Vitamin v-for="vitamin of vitaStore.oneVitamin" :key="vitamin.id" :vitamin="vitamin" />
         </template>
 
         <template v-else>
-          <template v-if="displayedVitamins && displayedVitamins.length > 0">
-            <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" @click="handleCardClick(vitamin)" />
+          <template v-if="vitaStore.loader || searchStore.loader">
+            <Skeleton v-for="skeleton in 6" />
           </template>
-          <p v-else>Нет данных для отображения</p>
+
+          <template v-else>
+            <template v-if="displayedVitamins && displayedVitamins.length > 0">
+              <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" @click="handleCardClick(vitamin)" />
+            </template>
+            <p v-else>Нет данных для отображения</p>
+          </template>
         </template>
       </div>
 
@@ -59,6 +68,7 @@
 
 <script setup>
 import Vitamins from './components/Vitamins.vue'
+import Vitamin from './components/Vitamin.vue'
 // import Loader from './components/Loader.vue';
 import { useVitaStore } from './store/VitaStore';
 import { useSearchStore } from './store/SearchStore';
@@ -100,9 +110,9 @@ const handleSearchInput = async () => {
   }, debounceDelay);
 };
 
-const handleCardClick = async (item) => {
+const handleCardClick = async (vitamin) => {
   try {
-    const response = await getOneItemApi(item.id);
+    const response = await vitaStore.getOneVitamin(vitamin.id);
     console.log('Детали витамина:', response);
   } catch (error) {
     console.error('Ошибка при получении деталей витамина:', error.message);
@@ -239,6 +249,10 @@ onMounted(() => {
       gap: 32px;
       transition: all 0.3s ease-in-out;
 
+      .item {
+        --el-color-warning: #e6a23c;
+      }
+
       @media (max-width: 632px) {
         align-self: flex-end;
         position: absolute;
@@ -323,6 +337,8 @@ onMounted(() => {
     margin: 0;
     padding: 0 16px;
     background-color: $background-color_light-grey;
+    transition: all 0.3s ease-in-out;
+
 
     @media (max-width: 768px) {
       font-size: 18px;
@@ -346,6 +362,10 @@ onMounted(() => {
         right: -6px;
         width: 14px;
         height: 14px;
+      }
+
+      @media (max-width: 685px) {
+        display: none;
       }
     }
   }
