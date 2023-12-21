@@ -35,6 +35,5 @@ export const useVitaStore = defineStore('vitaStore', () => {
 
   return {
     loader, vitamins, oneVitamin, getAllVitamins, getOneVitamin,
-    // loader, vitamins, getAllVitamins,
   }
 })
