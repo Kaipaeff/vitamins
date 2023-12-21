@@ -24,8 +24,6 @@ export const useVitaStore = defineStore('vitaStore', () => {
     loader.value = true;
     try {
       oneVitamin.value = await getOneItemApi(id);
-      console.log('oneVitamin===>>>', oneVitamin.value); //Остановился тут. Item по id прилетает!!!
-
     } catch (error: any) {
       console.error('Error fetching vitamin details:', error.message);
     } finally {

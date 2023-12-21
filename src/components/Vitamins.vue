@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" :style="{ flexDirection: isGrid ? 'column' : 'row', display: isGrid ? 'grid' : 'flex' }">
     <div class="vitamin">
       <img class="vitamin_img" :src="`${vitamin.imageUrl}`" :alt="vitamin.name">
     </div>
@@ -19,14 +19,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 
 const props = defineProps({
   vitamin: {
     type: Object,
     required: true,
     default: () => { }
-  }
+  },
+  isGrid: Boolean,
 })
 
 </script>
@@ -36,10 +36,10 @@ const props = defineProps({
 
 .card {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   justify-content: space-between;
-  max-width: 340px;
+  // max-width: 340px;
   padding: 16px;
   border-radius: 16px;
   background-color: $white;
