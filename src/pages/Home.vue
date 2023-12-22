@@ -98,7 +98,6 @@ const displayedVitamins = computed(() => {
 const handleCardClick = async (vitamin) => {
   try {
     const response = await vitaStore.getOneVitamin(vitamin.id);
-    console.log('Детали витамина:', response);
   } catch (error) {
     console.error('Ошибка при получении деталей витамина:', error.message);
   }

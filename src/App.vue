@@ -191,7 +191,7 @@ import Header from './components/Header.vue';
 
 
 <style lang="scss" scoped>
-// @import './scss/settings/variables';
+@import './scss/settings/variables';
 
 // .header {
 //   position: fixed;

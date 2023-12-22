@@ -3,6 +3,7 @@
 
     <div class="vitamin">
       <img class="vitamin_img" :src="`${vitamin.imageUrl}`" :alt="vitamin.name">
+      <img class="favorite_icon" src="../assets/images/icons/favorites.svg" alt="favorites-icon" @click="handleAddToFavorite(vitamin)">
     </div>
     <div class="vitamin_details">
       <div class="vitamin_name">
@@ -31,6 +32,16 @@ const props = defineProps({
   },
   isGrid: Boolean,
 })
+
+const handleAddToFavorite = (item) => {
+  console.log('vitamin===>>>', item);
+  try {
+
+  } catch (error) {
+    console.error('Error axios.get to favorites:', error.message);
+    throw error;
+  }
+}
 
 </script>
 
@@ -77,6 +88,16 @@ const props = defineProps({
     .vitamin_img {
       max-width: 200px;
       height: 100%;
+    }
+
+    .favorite_icon {
+      position: absolute;
+      top: 16px;
+      right: 17px;
+      width: 24px;
+      height: 24px;
+      opacity: 0;
+      z-index: 3;
     }
   }
 

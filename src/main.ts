@@ -10,6 +10,7 @@ import App from './App.vue';
 
 import Home from './pages/Home.vue';
 import Favorites from './pages/Favorites.vue';
+import OneItem from './pages/OneItem.vue';
 
 import './scss/settings/normalize.scss';
 import 'element-plus/dist/index.css'
@@ -20,6 +21,7 @@ const app = createApp(App);
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/favorites', name: 'Favorites', component: Favorites },
+  { path: '/id', name: 'OneItem', component: OneItem },
 ]
 
 const router = createRouter({
