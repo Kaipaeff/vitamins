@@ -59,12 +59,9 @@ export const useVitaStore = defineStore('vitaStore', () => {
     }
   };
 
-  const addToFavorites = (item: { isFavorite: boolean; }) => {
-    item.isFavorite = true;
-
-    // console.log('item.isFavorite:', item.isFavorite);
-    // console.log('vitamins into VitaStore:', vitamins.value);
-
+  const addToFavorites = async (el: { isFavorite: boolean; }) => {
+    el.isFavorite = true;
+    console.log('el from addToFavorites function into VitaStore:', el);
   }
 
 

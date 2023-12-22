@@ -69,10 +69,11 @@ const handleCardClick = async ({ vitamin }) => {
 const handleAddToFavorite = ({ vitamin }) => {
   try {
     const obj = {
+      ...vitamin,
       vitaminId: vitamin.id
     }
     vitaStore.addToFavorites(obj);
-    console.log('vitaStore into handleAddToFavorite >>>', vitaStore);
+    // console.log('vitaStore into handleAddToFavorite >>>', vitaStore.vitamins);
   } catch (error) {
     console.error('Error axios.get to favorites:', error.message);
     throw error;
