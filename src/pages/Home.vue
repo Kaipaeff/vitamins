@@ -58,9 +58,12 @@
         </template>
 
         <template v-else>
-          <template v-if="displayedVitamins && displayedVitamins.length > 0">
+          <!-- <template v-if="displayedVitamins && displayedVitamins.length > 0">
             <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" :isGrid="isGrid"
               @click="handleCardClick(vitamin)" />
+          </template> -->
+          <template v-if="displayedVitamins && displayedVitamins.length > 0">
+            <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" :isGrid="isGrid" />
           </template>
           <p v-else>Нет данных для отображения</p>
         </template>
@@ -95,13 +98,13 @@ const displayedVitamins = computed(() => {
 });
 
 
-const handleCardClick = async (vitamin) => {
-  try {
-    const response = await vitaStore.getOneVitamin(vitamin.id);
-  } catch (error) {
-    console.error('Ошибка при получении деталей витамина:', error.message);
-  }
-};
+// const handleCardClick = async (vitamin) => {
+//   try {
+//     const response = await vitaStore.getOneVitamin(vitamin.id);
+//   } catch (error) {
+//     console.error('Ошибка при получении деталей витамина:', error.message);
+//   }
+// };
 
 
 const handleLayout = () => {
@@ -121,9 +124,10 @@ function saveLayoutToLocalStorage(layout) {
   localStorage.setItem(localStorageKey, layout);
 };
 
-onMounted(() => {
+onMounted(async () => {
   isGrid.value = getLayoutFromLocalStorage() === 'grid';
-  vitaStore.getAllVitamins();
+  await vitaStore.getAllVitamins();
+  await vitaStore.getFavoriteVitamins();
 });
 
 </script>

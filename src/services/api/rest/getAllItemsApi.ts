@@ -8,6 +8,8 @@ export interface Items {
   imageUrl: string;
   prod: string;
   points: number;
+  isFavorite: boolean;
+  vitaminId: number;
 }
 
 export const getAllItemsApi = async (): Promise<Items[]> => {

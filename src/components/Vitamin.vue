@@ -2,6 +2,11 @@
   <div class="single-card card">
     <div class="vitamin">
       <img class="vitamin_img" :src="`${vitamin.imageUrl}`" :alt="vitamin.name">
+      <svg class="favorite_icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+        stroke="#B5B6BC" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+      </svg>
     </div>
     <div class="vitamin_details">
       <div class="vitamin_name">
@@ -99,17 +104,17 @@ const increment = () => {
     padding: 16px;
   }
 
-  &::before {
-    content: "";
-    background: url("../assets/images/icons/favorites.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
+  .favorite_icon {
     position: absolute;
     top: 24px;
     right: 24px;
     width: 24px;
     height: 24px;
     cursor: pointer;
+
+    &:hover {
+      stroke: #00B453;
+    }
   }
 
   .vitamin {
