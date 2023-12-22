@@ -91,7 +91,7 @@
 
         <template v-else>
           <template v-if="vitaStore.loader || searchStore.loader">
-            <Skeleton v-for="skeleton in 6" />
+            <Skeleton v-for="skeleton in 6" :isGrid="isGrid" />
           </template>
 
           <template v-else>

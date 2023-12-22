@@ -45,6 +45,10 @@ const props = defineProps({
   background-color: $white;
   box-shadow: 0 3px 8px 0px rgba(14, 24, 80, 0.2);
 
+  @media (max-width: 685px) {
+    flex-direction: column !important;
+  }
+
   &:hover {
     box-shadow: 0 6px 12px 4px rgba(21, 153, 32, 0.2);
     transform: translateY(-1px);
@@ -122,6 +126,8 @@ const props = defineProps({
   border-radius: 16px;
   background-color: $white;
   box-shadow: 0 3px 8px 0px rgba(14, 24, 80, 0.2);
+
+
 
   &:hover {
     box-shadow: 0 6px 12px 4px rgba(21, 153, 32, 0.2);
