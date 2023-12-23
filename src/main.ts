@@ -10,7 +10,7 @@ import App from './App.vue';
 
 import Home from './pages/Home.vue';
 import Favorites from './pages/Favorites.vue';
-// import OneItem from './pages/OneItem.vue';
+import Vitamin from './components/Vitamin.vue';
 
 import './scss/settings/normalize.scss';
 import 'element-plus/dist/index.css'
@@ -21,7 +21,7 @@ const app = createApp(App);
 const routes = [
   { path: '/vitamins', name: 'Home', component: Home },
   { path: '/vitamins/favorites', name: 'Favorites', component: Favorites },
-  // { path: '/id', name: 'OneItem', component: OneItem },
+  { path: '/vitamins/:id', name: 'Vitamin', component: Vitamin },
 ]
 
 const router = createRouter({

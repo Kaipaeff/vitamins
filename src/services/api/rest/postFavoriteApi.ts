@@ -8,7 +8,8 @@ export const postFavorite = async (item: Items) => {
   try {
     if (!item.isFavorite) {
       const obj = {
-        vitaminId: item.id,
+        item_id: item.id,
+        // item,
       }
 
       item.isFavorite = true;
@@ -17,7 +18,7 @@ export const postFavorite = async (item: Items) => {
 
       item.favoriteId = data.id;
 
-      console.log('data from postFavoriteApi function:', data);
+      // console.log('data from postFavoriteApi function:', data);
 
       return data;
     } else {

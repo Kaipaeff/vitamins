@@ -7,50 +7,66 @@
     </div>
 
     <div class="filters">
-      <div class="filter">
+
+      <div class="back">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
           stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M14 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 6l8 0" />
-          <path d="M16 6l4 0" />
-          <path d="M8 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 12l2 0" />
-          <path d="M10 12l10 0" />
-          <path d="M17 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 18l11 0" />
-          <path d="M19 18l1 0" />
+          <path d="M15 15l-3 -3l3 -3" />
+          <path d="M11 15l-3 -3l3 -3" />
+          <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
         </svg>
+        <span class="back_text" @click="handleBack">назад</span>
       </div>
 
-      <div class="layout" @click="handleLayout">
-        <svg v-if="isGrid" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-          <path d="M4 14m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-        </svg>
+      <div class="controls">
+        <div class="filter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M14 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M4 6l8 0" />
+            <path d="M16 6l4 0" />
+            <path d="M8 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M4 12l2 0" />
+            <path d="M10 12l10 0" />
+            <path d="M17 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M4 18l11 0" />
+            <path d="M19 18l1 0" />
+          </svg>
+        </div>
 
-        <svg v-else xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24"
-          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-        </svg>
+        <div class="layout" @click="handleLayout">
+          <svg v-if="isGrid" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+            <path d="M4 14m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+          </svg>
+
+          <svg v-else xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+          </svg>
+        </div>
       </div>
+
     </div>
 
     <div class="card_wrapper" :class="{ 'grid-layout': isGrid, 'row-layout': !isGrid }">
-      <template v-if="vitaStore.oneVitamin">
-        <Vitamin v-for="vitamin of vitaStore.oneVitamin" :key="vitamin.id" :vitamin="vitamin" />
-      </template>
+      <!-- <template v-if="vitaStore.oneVitamin"> -->
+      <!-- <Vitamin v-for="vitamin of vitaStore.oneVitamin" :key="vitamin.id" :vitamin="vitamin" /> -->
+      <Vitamin v-if="vitaStore.oneVitamin" :vitamin="vitaStore.oneVitamin" />
+      <!-- </template> -->
 
       <template v-else>
         <template v-if="vitaStore.loader || searchStore.loader">
@@ -63,6 +79,15 @@
           </template>
           <p v-else>Нет данных для отображения</p>
         </template>
+
+
+        <!-- <template>
+          <template v-if="displayedVitamins && displayedVitamins.length > 0">
+          <Favorites v-for="favorite of favorites" :key="favorite.id" :favorite="favorite" :isGrid="isGrid" />
+          </template>
+          <p v-else>Нет данных для отображения</p>
+        </template> -->
+
       </template>
     </div>
 
@@ -72,14 +97,18 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 
-import Vitamins from '../components/Vitamins.vue'
-import Vitamin from '../components/Vitamin.vue'
+import Vitamins from '../components/Vitamins.vue';
+import Vitamin from '../components/Vitamin.vue';
+import Favorites from '../pages/Favorites.vue';
 import Skeleton from '../components/Skeleton.vue';
 
 
 import { useVitaStore } from '../store/VitaStore';
 import { useSearchStore } from '../store/SearchStore';
 
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 const isGrid = ref(getLayoutFromLocalStorage() === 'grid');
 
 const localStorageKey = 'layoutMode';
@@ -98,6 +127,11 @@ const handleLayout = () => {
   isGrid.value = !isGrid.value;
   saveLayoutToLocalStorage(isGrid.value ? 'grid' : 'row');
 };
+
+const handleBack = () => {
+  console.log('clicked on Back Btn');
+  router.go(-1)
+}
 
 const card_wrapper = computed(() => {
   return isGrid.value ? 'grid-layout' : 'row-layout';
@@ -277,11 +311,11 @@ onMounted(async () => {
   align-items: center;
   width: 1080px;
   margin-bottom: 64px;
-  padding-top: calc($header-default-height + 50px);
+  padding-top: calc($header-default-height + 30px);
   transition: all 0.3s ease-in-out;
 
   @media (max-width: 1120px) {
-    padding: calc($header-default-height + 50px) 24px 0 24px;
+    padding: calc($header-default-height + 30px) 24px 0 24px;
     width: 100%;
   }
 
@@ -292,10 +326,12 @@ onMounted(async () => {
   .filters {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
+    width: 100%;
     margin-bottom: 16px;
-    margin-left: auto;
-    padding-right: 14px;
+    // margin-left: auto;
+    // padding-right: 14px;
 
     svg {
       cursor: pointer;
@@ -303,6 +339,25 @@ onMounted(async () => {
       stroke-width: 1.6;
       width: 28px;
       height: 28px;
+    }
+
+    .back {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      cursor: pointer;
+
+      .back_text {
+        margin-bottom: 1px;
+      }
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 18px;
+      cursor: pointer;
     }
   }
 

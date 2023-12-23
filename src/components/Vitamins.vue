@@ -28,22 +28,32 @@
         <span class="item_title">Описание:</span> {{ vitamin.descr }}
       </div>
 
-      <div class="vitamin_country">
+      <!-- <div class="vitamin_country">
         <span class="item_title">Производство:</span> {{ vitamin.prod }}
-      </div>
+      </div> -->
 
       <div class="more_block">
         <div class="vitamin_price">
           <span class="item_title">Цена:</span> {{ vitamin.price }} &#8381
         </div>
 
-        <div class="vitamin_more" @click="handleCardClick({ vitamin })">
+        <!-- <div class="vitamin_more" @click="handleMoreBtnClick({ vitamin })">
+          <router-link :to="{ name: 'vitamins', params: { id: vitamin.id } }">
+            <el-button type="warning">Подробнее
+              <el-icon>
+                <ArrowRight />
+              </el-icon>
+            </el-button>
+          </router-link>
+        </div> -->
+        <div class="vitamin_more" @click="handleMoreBtnClick({ vitamin })">
           <el-button type="warning">Подробнее
             <el-icon>
               <ArrowRight />
             </el-icon>
           </el-button>
         </div>
+
       </div>
     </div>
   </div>
@@ -71,9 +81,10 @@ const props = defineProps({
 })
 
 
-const handleCardClick = async ({ vitamin }) => {
+const handleMoreBtnClick = async ({ vitamin }) => {
   try {
     const response = await vitaStore.getOneVitamin(vitamin.id);
+    console.log('vitaStore.oneVitamin from Vitamins==>>', vitaStore.oneVitamin);
   } catch (error) {
     console.error('Ошибка при получении деталей витамина:', error.message);
   }
@@ -83,11 +94,9 @@ const handleAddToFavorite = ({ vitamin }) => {
   try {
     const obj = {
       ...vitamin,
-      vitaminId: vitamin.id,
+      item_id: vitamin.id,
     }
-    // vitamin.isFavorite = !vitamin.isFavorite;
     postFavorite(vitamin)
-    console.log('vitamin.isFavorite POSLE', vitamin.isFavorite);
   } catch (error) {
     console.error('Error axios.get to favorites:', error.message);
     throw error;
@@ -200,10 +209,10 @@ const handleAddToFavorite = ({ vitamin }) => {
     color: #5F5F5F;
   }
 
-  .vitamin_country {
-    margin-bottom: 16px;
-    color: #5F5F5F;
-  }
+  // .vitamin_country {
+  //  margin-bottom: 16px;
+  // color: #5F5F5F;
+  // }
 
   .item_title {
     font-weight: 700;
