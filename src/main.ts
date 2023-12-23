@@ -19,8 +19,8 @@ import './scss/style.scss';
 const app = createApp(App);
 
 const routes = [
-  { path: '/vitam', name: 'Home', component: Home },
-  { path: '/vitam/favorites', name: 'Favorites', component: Favorites },
+  { path: '/vitamins', name: 'Home', component: Home },
+  { path: '/vitamins/favorites', name: 'Favorites', component: Favorites },
   // { path: '/id', name: 'OneItem', component: OneItem },
 ]
 
