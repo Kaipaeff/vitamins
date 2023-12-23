@@ -3,13 +3,21 @@
 
     <div class="vitamin">
       <img class="vitamin_img" :src="`${vitamin.imageUrl}`" :alt="vitamin.name">
+
       <span class="favorite_icon" @click="handleAddToFavorite({ vitamin })">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#B5B6BC" fill="none"
-          stroke-linecap="round" stroke-linejoin="round">
+        <svg v-if="!vitamin.isFavorite" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+          stroke="#B5B6BC" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+        </svg>
+
+        <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#f29100"
+          fill="#f29100" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
         </svg>
       </span>
+
     </div>
     <div class="vitamin_details">
       <div class="vitamin_name">
@@ -46,6 +54,8 @@ import { ref } from 'vue';
 
 import { useVitaStore } from '../store/VitaStore';
 
+import { postFavorite } from '../services/api/rest/postFavoriteApi'
+
 const vitaStore = useVitaStore();
 
 
@@ -75,7 +85,8 @@ const handleAddToFavorite = ({ vitamin }) => {
       ...vitamin,
       vitaminId: vitamin.id,
     }
-    vitamin.isFavorite = !vitamin.isFavorite;
+    // vitamin.isFavorite = !vitamin.isFavorite;
+    postFavorite(vitamin)
     console.log('vitamin.isFavorite POSLE', vitamin.isFavorite);
   } catch (error) {
     console.error('Error axios.get to favorites:', error.message);
@@ -138,19 +149,6 @@ const handleAddToFavorite = ({ vitamin }) => {
     box-shadow: 0 6px 12px 4px rgba(21, 153, 32, 0.2);
     transform: translateY(-1px);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    // cursor: pointer;
-
-    // &::before {
-    //   content: "";
-    //   background: url("../assets/images/icons/favorites.svg");
-    //   background-size: cover;
-    //   background-repeat: no-repeat;
-    //   position: absolute;
-    //   top: 16px;
-    //   right: 17px;
-    //   width: 24px;
-    //   height: 24px;
-    // }
   }
 
   .vitamin {
@@ -174,9 +172,9 @@ const handleAddToFavorite = ({ vitamin }) => {
       cursor: pointer;
 
 
-      &:hover svg {
-        stroke: #00B453;
-      }
+      // &:hover svg {
+      //   stroke: #00B453;
+      // }
     }
   }
 

@@ -199,7 +199,7 @@ const handleSearchInput = async () => {
       transition: all 0.3s ease-in-out;
 
       .item {
-        --el-color-warning: #e6a23c;
+        --el-color-warning: #f29100;
       }
 
       @media (max-width: 632px) {

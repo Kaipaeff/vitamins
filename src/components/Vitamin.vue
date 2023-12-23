@@ -112,9 +112,9 @@ const increment = () => {
     height: 24px;
     cursor: pointer;
 
-    &:hover {
-      stroke: #00B453;
-    }
+    // &:hover {
+    //   stroke: #00B453;
+    // }
   }
 
   .vitamin {
