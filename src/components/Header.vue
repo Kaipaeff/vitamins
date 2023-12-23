@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header_wrapper">
 
-      <router-link to="/vitam">
+      <router-link to="/vitamins">
         <img class="logo_img" src="../assets/images/logo.png" alt="Логотип">
       </router-link>
 
@@ -21,7 +21,7 @@
           </el-badge>
         </div>
 
-        <router-link to="/vitam/favorites">
+        <router-link to="/vitamins/favorites">
           <div class="favorites">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.6" stroke="#5F5F5F" fill="none"
               stroke-linecap="round" stroke-linejoin="round">
