@@ -37,21 +37,14 @@
           <span class="item_title">Цена:</span> {{ vitamin.price }} &#8381
         </div>
 
-        <!-- <div class="vitamin_more" @click="handleMoreBtnClick({ vitamin })">
-          <router-link :to="{ name: 'vitamins', params: { id: vitamin.id } }">
-            <el-button type="warning">Подробнее
-              <el-icon>
-                <ArrowRight />
-              </el-icon>
-            </el-button>
-          </router-link>
-        </div> -->
         <div class="vitamin_more" @click="handleMoreBtnClick({ vitamin })">
+          <!-- <router-link :to="{ name: 'vitamins', params: { id: vitamin.id } }"> -->
           <el-button type="warning">Подробнее
             <el-icon>
               <ArrowRight />
             </el-icon>
           </el-button>
+          <!-- </router-link> -->
         </div>
 
       </div>
@@ -66,8 +59,10 @@ import { useVitaStore } from '../store/VitaStore';
 
 import { postFavorite } from '../services/api/rest/postFavoriteApi'
 
-const vitaStore = useVitaStore();
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
+const vitaStore = useVitaStore();
 
 
 const props = defineProps({
@@ -84,7 +79,8 @@ const props = defineProps({
 const handleMoreBtnClick = async ({ vitamin }) => {
   try {
     const response = await vitaStore.getOneVitamin(vitamin.id);
-    console.log('vitaStore.oneVitamin from Vitamins==>>', vitaStore.oneVitamin);
+    console.log('vitamin.id from Vitamins==>>', vitamin.id);
+    router.push({ name: 'Vitamin', params: { id: vitamin.id } })
   } catch (error) {
     console.error('Ошибка при получении деталей витамина:', error.message);
   }

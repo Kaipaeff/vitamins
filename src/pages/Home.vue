@@ -107,8 +107,8 @@ import { useVitaStore } from '../store/VitaStore';
 import { useSearchStore } from '../store/SearchStore';
 
 import { useRouter } from 'vue-router';
-
 const router = useRouter();
+
 const isGrid = ref(getLayoutFromLocalStorage() === 'grid');
 
 const localStorageKey = 'layoutMode';
