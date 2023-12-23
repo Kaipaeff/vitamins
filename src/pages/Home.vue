@@ -58,10 +58,6 @@
         </template>
 
         <template v-else>
-          <!-- <template v-if="displayedVitamins && displayedVitamins.length > 0">
-            <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" :isGrid="isGrid"
-              @click="handleCardClick(vitamin)" />
-          </template> -->
           <template v-if="displayedVitamins && displayedVitamins.length > 0">
             <Vitamins v-for="vitamin of displayedVitamins" :key="vitamin.id" :vitamin="vitamin" :isGrid="isGrid" />
           </template>
@@ -96,15 +92,6 @@ const searchStore = useSearchStore();
 const displayedVitamins = computed(() => {
   return searchStore.vitamins.length > 0 ? searchStore.vitamins : vitaStore.vitamins;
 });
-
-
-// const handleCardClick = async (vitamin) => {
-//   try {
-//     const response = await vitaStore.getOneVitamin(vitamin.id);
-//   } catch (error) {
-//     console.error('Ошибка при получении деталей витамина:', error.message);
-//   }
-// };
 
 
 const handleLayout = () => {

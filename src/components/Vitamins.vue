@@ -42,10 +42,12 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 
 import { useVitaStore } from '../store/VitaStore';
 
 const vitaStore = useVitaStore();
+
 
 
 const props = defineProps({
@@ -57,6 +59,7 @@ const props = defineProps({
   isGrid: Boolean,
   isFavorite: Boolean,
 })
+
 
 const handleCardClick = async ({ vitamin }) => {
   try {
@@ -70,10 +73,10 @@ const handleAddToFavorite = ({ vitamin }) => {
   try {
     const obj = {
       ...vitamin,
-      vitaminId: vitamin.id
+      vitaminId: vitamin.id,
     }
-    vitaStore.addToFavorites(obj);
-    // console.log('vitaStore into handleAddToFavorite >>>', vitaStore.vitamins);
+    vitamin.isFavorite = !vitamin.isFavorite;
+    console.log('vitamin.isFavorite POSLE', vitamin.isFavorite);
   } catch (error) {
     console.error('Error axios.get to favorites:', error.message);
     throw error;

@@ -39,7 +39,7 @@ export const useVitaStore = defineStore('vitaStore', () => {
 
   const getFavoriteVitamins = async () => {
     try {
-      const favorites = await getFavorites();
+      const favorites = await getFavorites(); //получаем данные с АПИ из ресурса /favorites
 
       vitamins.value = vitamins.value.map(el => {
         const favorite = favorites.find((fav) => fav.vitaminId === el.id)
@@ -59,14 +59,18 @@ export const useVitaStore = defineStore('vitaStore', () => {
     }
   };
 
-  const addToFavorites = async (el: { isFavorite: boolean; }) => {
-    el.isFavorite = true;
-    console.log('el from addToFavorites function into VitaStore:', el);
-  }
+  // const addToFavorites = (vitamin: { isFavorite: boolean; }) => {
+
+  //   console.log('vitamin.isFavorite DO', vitamin.isFavorite);
+  //   vitamin.isFavorite = !vitamin.isFavorite;
+  //   console.log('vitamin.isFavorite POSLE', vitamin.isFavorite);
+
+  //   // console.log('vitamin from addToFavorites function into VitaStore:', vitamin.isFavorite);
+  // }
 
 
 
   return {
-    loader, vitamins, oneVitamin, getAllVitamins, getOneVitamin, getFavoriteVitamins, addToFavorites,
+    loader, vitamins, oneVitamin, getAllVitamins, getOneVitamin, getFavoriteVitamins,
   };
 });
