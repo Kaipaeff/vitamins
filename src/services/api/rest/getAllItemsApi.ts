@@ -10,6 +10,7 @@ export interface Items {
   points: number;
   isFavorite: boolean;
   vitaminId: number;
+  favoriteId: number | null;
 }
 
 export const getAllItemsApi = async (): Promise<Items[]> => {
