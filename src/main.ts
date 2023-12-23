@@ -19,9 +19,9 @@ import './scss/style.scss';
 const app = createApp(App);
 
 const routes = [
-  { path: '/vitamins', name: 'Home', component: Home },
-  { path: '/vitamins/favorites', name: 'Favorites', component: Favorites },
-  { path: '/vitamins/:id', name: 'Vitamin', component: Vitamin },
+  { path: '/vitamins/', name: 'Home', component: Home },
+  { path: '/vitamins/favorites/', name: 'Favorites', component: Favorites },
+  { path: '/vitamins/:id/', name: 'Vitamin', component: Vitamin },
 ]
 
 const router = createRouter({
