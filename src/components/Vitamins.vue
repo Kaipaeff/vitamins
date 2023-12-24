@@ -37,7 +37,7 @@
           <span class="item_title">Цена:</span> {{ vitamin.price }} &#8381
         </div>
 
-        <div class="vitamin_more" @click.prevent="handleMoreBtnClick(vitamin.id)">
+        <div class="vitamin_more" @click="handleMoreBtnClick(vitamin.id)">
           <!-- <router-link :to="{ name: 'vitamins', params: { id: vitamin.id } }"> -->
           <el-button type="warning">Подробнее
             <el-icon>
@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 import { useVitaStore } from '../store/VitaStore';
 
@@ -78,6 +78,7 @@ const handleMoreBtnClick = async (id) => {
     if (id) {
       await vitaStore.getOneVitamin(id);
       console.log('vitamin.id from Vitamins==>>', id);
+
       router.push(`/vitamin/${id}`);
     } else {
       console.error('Ошибка: объект vitamin или его свойство id не существует');
