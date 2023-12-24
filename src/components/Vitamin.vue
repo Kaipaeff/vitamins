@@ -1,4 +1,5 @@
 <template>
+  <!-- <router-link :to="{ name: 'Vitamin', params: { id: vitamin.id } }"></router-link> -->
   <div class="single-card card">
     <div class="vitamin">
       <img class="vitamin_img" :src="`${vitamin.imageUrl}`" :alt="vitamin.name">
@@ -61,17 +62,22 @@ const props = defineProps({
   vitamin: {
     type: Object,
     required: true,
-    default: () => { }
-  }
+  },
+  isGrid: Boolean,
+  isFavorite: Boolean,
 })
 
 const decrement = () => {
-  count.value >= 1 ? count.value -= 1 : 0;
+  count.value = Math.max(count.value - 1, 0);
 }
 
 const increment = () => {
   count.value += 1;
 }
+
+// onMounted(() => {
+//   // console.log('Vitamin component mounted with vitamin:', vitamin);
+// });
 
 </script>
 

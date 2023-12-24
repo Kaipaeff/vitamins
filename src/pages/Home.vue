@@ -7,49 +7,90 @@
     </div>
 
     <div class="filters">
-      <div class="filter">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M14 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 6l8 0" />
-          <path d="M16 6l4 0" />
-          <path d="M8 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 12l2 0" />
-          <path d="M10 12l10 0" />
-          <path d="M17 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 18l11 0" />
-          <path d="M19 18l1 0" />
-        </svg>
+
+      <GoBack />
+
+      <!-- <div class="back" @click="$router.back()">
+        <el-icon>
+          <DArrowLeft />
+        </el-icon>
+        <span class="back_text">назад</span>
+      </div> -->
+
+      <div class="controls">
+
+        <div class="sort_name">
+          <svg v-if="true" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sort-ascending-letters" width="24"
+            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M15 10v-5c0 -1.38 .62 -2 2 -2s2 .62 2 2v5m0 -3h-4" />
+            <path d="M19 21h-4l4 -7h-4" />
+            <path d="M4 15l3 3l3 -3" />
+            <path d="M7 6v12" />
+          </svg>
+
+          <svg v-else xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sort-descending-letters" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M15 21v-5c0 -1.38 .62 -2 2 -2s2 .62 2 2v5m0 -3h-4" />
+            <path d="M19 10h-4l4 -7h-4" />
+            <path d="M4 15l3 3l3 -3" />
+            <path d="M7 6v12" />
+          </svg>
+        </div>
+
+        <div class="sort_price">
+          <svg v-if="true" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sort-ascending-numbers" width="24"
+            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 15l3 3l3 -3" />
+            <path d="M7 6v12" />
+            <path d="M17 3a2 2 0 0 1 2 2v3a2 2 0 1 1 -4 0v-3a2 2 0 0 1 2 -2z" />
+            <path d="M17 16m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M19 16v3a2 2 0 0 1 -2 2h-1.5" />
+          </svg>
+
+          <svg v-else xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sort-descending-numbers" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 15l3 3l3 -3" />
+            <path d="M7 6v12" />
+            <path d="M17 14a2 2 0 0 1 2 2v3a2 2 0 1 1 -4 0v-3a2 2 0 0 1 2 -2z" />
+            <path d="M17 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M19 5v3a2 2 0 0 1 -2 2h-1.5" />
+          </svg>
+        </div>
+
+        <div class="layout" @click="handleLayout">
+          <svg v-if="isGrid" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+            <path d="M4 14m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+          </svg>
+
+          <svg v-else xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+          </svg>
+        </div>
       </div>
 
-      <div class="layout" @click="handleLayout">
-        <svg v-if="isGrid" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-          <path d="M4 14m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-        </svg>
-
-        <svg v-else xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots" width="24" height="24"
-          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-          <path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-        </svg>
-      </div>
     </div>
 
     <div class="card_wrapper" :class="{ 'grid-layout': isGrid, 'row-layout': !isGrid }">
-      <template v-if="vitaStore.oneVitamin">
-        <Vitamin v-for="vitamin of vitaStore.oneVitamin" :key="vitamin.id" :vitamin="vitamin" />
+      <template v-if="vitaStore.oneVitamin && vitaStore.oneVitamin.length > 0">
+        <!-- <Vitamin v-for="vitamin of vitaStore.oneVitamin" :key="vitamin.id" :vitamin="vitamin" /> -->
+        <Vitamin :vitamin="vitaStore.oneVitamin[0]" />
       </template>
 
       <template v-else>
@@ -63,6 +104,15 @@
           </template>
           <p v-else>Нет данных для отображения</p>
         </template>
+
+
+        <!-- <template>
+          <template v-if="displayedVitamins && displayedVitamins.length > 0">
+          <Favorites v-for="favorite of favorites" :key="favorite.id" :favorite="favorite" :isGrid="isGrid" />
+          </template>
+          <p v-else>Нет данных для отображения</p>
+        </template> -->
+
       </template>
     </div>
 
@@ -70,15 +120,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 
-import Vitamins from '../components/Vitamins.vue'
-import Vitamin from '../components/Vitamin.vue'
+import Vitamins from '../components/Vitamins.vue';
+import Vitamin from '../components/Vitamin.vue';
+import Favorites from '../pages/Favorites.vue';
 import Skeleton from '../components/Skeleton.vue';
-
+import GoBack from '../components/GoBack.vue'
 
 import { useVitaStore } from '../store/VitaStore';
 import { useSearchStore } from '../store/SearchStore';
+
+import router from '../router';
+
+
+// import { useRouter } from 'vue-router';
+// const router = useRouter();
+
 
 const isGrid = ref(getLayoutFromLocalStorage() === 'grid');
 
@@ -99,6 +157,12 @@ const handleLayout = () => {
   saveLayoutToLocalStorage(isGrid.value ? 'grid' : 'row');
 };
 
+// const handleBack = async () => {
+//   console.log('clicked on Back Btn');
+//   router.go(-1);
+//   await fetchData();
+// }
+
 const card_wrapper = computed(() => {
   return isGrid.value ? 'grid-layout' : 'row-layout';
 });
@@ -113,9 +177,31 @@ function saveLayoutToLocalStorage(layout) {
 
 onMounted(async () => {
   isGrid.value = getLayoutFromLocalStorage() === 'grid';
-  await vitaStore.getAllVitamins();
-  await vitaStore.getFavoriteVitamins();
+  await fetchData();
 });
+
+const fetchData = async () => {
+  try {
+    await vitaStore.getAllVitamins();
+    await vitaStore.getFavoriteVitamins();
+    console.log('fetchData EXECUTED');
+  } catch (error) {
+    console.error('Error downloading vitamins into Home:', error.message);
+    throw error;
+  }
+}
+
+// watch(
+//   () => router.currentRoute.value.params.id,
+//   async (newId, oldId) => {
+//     if (newId !== oldId) {
+//       await fetchData();
+//       if (router.app) {
+//         await router.app.$nextTick();
+//       }
+//     }
+//   }
+// );
 
 </script>
 
@@ -277,11 +363,11 @@ onMounted(async () => {
   align-items: center;
   width: 1080px;
   margin-bottom: 64px;
-  padding-top: calc($header-default-height + 50px);
+  padding-top: calc($header-default-height + 30px);
   transition: all 0.3s ease-in-out;
 
   @media (max-width: 1120px) {
-    padding: calc($header-default-height + 50px) 24px 0 24px;
+    padding: calc($header-default-height + 30px) 24px 0 24px;
     width: 100%;
   }
 
@@ -292,10 +378,12 @@ onMounted(async () => {
   .filters {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
+    width: 100%;
     margin-bottom: 16px;
-    margin-left: auto;
-    padding-right: 14px;
+    // margin-left: auto;
+    // padding-right: 14px;
 
     svg {
       cursor: pointer;
@@ -303,6 +391,33 @@ onMounted(async () => {
       stroke-width: 1.6;
       width: 28px;
       height: 28px;
+    }
+
+    // .back {
+    //   display: flex;
+    //   align-items: center;
+    //   color: $text_grey;
+    //   font-weight: 500;
+    //   gap: 3px;
+    //   cursor: pointer;
+
+    //   .back_text {
+    //     margin-bottom: 1px;
+    //     font-size: 18px;
+    //   }
+
+    //   svg {
+    //     width: 16px;
+    //   }
+    // }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 18px;
+      // margin-left: auto;
+      cursor: pointer;
     }
   }
 
