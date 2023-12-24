@@ -29,7 +29,7 @@ export const useVitaStore = defineStore('vitaStore', () => {
   const getOneVitamin = async (id: number) => {
     loader.value = true;
     try {
-      oneVitamin.value = await getOneItemApi(id);
+      oneVitamin.value = await getOneItemApi(id); 
     } catch (error: any) {
       console.error('Error fetching vitamin details:', error.message);
     } finally {

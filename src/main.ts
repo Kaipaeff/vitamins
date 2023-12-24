@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
+// import { createRouter, createWebHistory } from 'vue-router';
+import router from './router';
 
 import { createPinia } from 'pinia';
 import ElementPlus from 'element-plus';
@@ -8,9 +9,9 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import App from './App.vue';
 
-import Home from './pages/Home.vue';
-import Favorites from './pages/Favorites.vue';
-import Vitamin from './components/Vitamin.vue';
+// import Home from './pages/Home.vue';
+// import Favorites from './pages/Favorites.vue';
+// import Vitamin from './components/Vitamin.vue';
 
 import './scss/settings/normalize.scss';
 import 'element-plus/dist/index.css'
@@ -18,16 +19,16 @@ import './scss/style.scss';
 
 const app = createApp(App);
 
-const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/favorites', name: 'Favorites', component: Favorites },
-  { path: '/:id', name: 'Vitamin', component: Vitamin},
-]
+// const routes = [
+//   { path: '/', name: 'Home', component: Home },
+//   { path: '/favorites', name: 'Favorites', component: Favorites },
+//   { path: '/:id', name: 'Vitamin', component: Vitamin},
+// ]
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
+// const router = createRouter({
+//   history: createWebHistory(),
+//   routes
+// })
 
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

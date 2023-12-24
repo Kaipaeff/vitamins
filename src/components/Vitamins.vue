@@ -37,7 +37,7 @@
           <span class="item_title">Цена:</span> {{ vitamin.price }} &#8381
         </div>
 
-        <div class="vitamin_more" @click="handleMoreBtnClick(vitamin)">
+        <div class="vitamin_more" @click.prevent="handleMoreBtnClick(vitamin.id)">
           <!-- <router-link :to="{ name: 'vitamins', params: { id: vitamin.id } }"> -->
           <el-button type="warning">Подробнее
             <el-icon>
@@ -59,11 +59,9 @@ import { useVitaStore } from '../store/VitaStore';
 
 import { postFavorite } from '../services/api/rest/postFavoriteApi'
 
-import { useRouter } from 'vue-router';
-const router = useRouter();
+import router from '../router';
 
 const vitaStore = useVitaStore();
-
 
 const props = defineProps({
   vitamin: {
@@ -75,12 +73,12 @@ const props = defineProps({
 })
 
 
-const handleMoreBtnClick = async (vitamin) => {
+const handleMoreBtnClick = async (id) => {
   try {
-    if (vitamin) {
-      await vitaStore.getOneVitamin(vitamin.id);
-      console.log('vitamin.id from Vitamins==>>', vitamin.id);
-      // router.push({ name: 'Vitamin', params: { id: vitamin.id } })
+    if (id) {
+      await vitaStore.getOneVitamin(id);
+      console.log('vitamin.id from Vitamins==>>', id);
+      router.push(`/vitamin/${id}`);
     } else {
       console.error('Ошибка: объект vitamin или его свойство id не существует');
     }
