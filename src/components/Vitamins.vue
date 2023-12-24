@@ -37,7 +37,7 @@
           <span class="item_title">Цена:</span> {{ vitamin.price }} &#8381
         </div>
 
-        <div class="vitamin_more" @click="handleMoreBtnClick({ vitamin })">
+        <div class="vitamin_more" @click="handleMoreBtnClick(vitamin)">
           <!-- <router-link :to="{ name: 'vitamins', params: { id: vitamin.id } }"> -->
           <el-button type="warning">Подробнее
             <el-icon>
@@ -69,20 +69,24 @@ const props = defineProps({
   vitamin: {
     type: Object,
     required: true,
-    default: () => { }
   },
   isGrid: Boolean,
   isFavorite: Boolean,
 })
 
 
-const handleMoreBtnClick = async ({ vitamin }) => {
+const handleMoreBtnClick = async (vitamin) => {
   try {
-    const response = await vitaStore.getOneVitamin(vitamin.id);
-    console.log('vitamin.id from Vitamins==>>', vitamin.id);
-    router.push({ name: 'Vitamin', params: { id: vitamin.id } })
+    if (vitamin) {
+      await vitaStore.getOneVitamin(vitamin.id);
+      console.log('vitamin.id from Vitamins==>>', vitamin.id);
+      // router.push({ name: 'Vitamin', params: { id: vitamin.id } })
+    } else {
+      console.error('Ошибка: объект vitamin или его свойство id не существует');
+    }
   } catch (error) {
     console.error('Ошибка при получении деталей витамина:', error.message);
+    console.error(error);
   }
 };
 

@@ -8,7 +8,7 @@
 
     <div class="filters">
 
-      <div class="back" @click="handleBack">
+      <div class="back" @click.prevent="router.go(-1)">
         <el-icon>
           <DArrowLeft />
         </el-icon>
@@ -101,10 +101,10 @@
     </div>
 
     <div class="card_wrapper" :class="{ 'grid-layout': isGrid, 'row-layout': !isGrid }">
-      <!-- <template v-if="vitaStore.oneVitamin"> -->
-      <!-- <Vitamin v-for="vitamin of vitaStore.oneVitamin" :key="vitamin.id" :vitamin="vitamin" /> -->
-      <Vitamin v-if="vitaStore.oneVitamin" :vitamin="vitaStore.oneVitamin" />
-      <!-- </template> -->
+      <template v-if="vitaStore.oneVitamin">
+        <!-- <Vitamin v-for="vitamin of vitaStore.oneVitamin" :key="vitamin.id" :vitamin="vitamin" /> -->
+        <Vitamin :vitamin="vitaStore.oneVitamin[0]" />
+      </template>
 
       <template v-else>
         <template v-if="vitaStore.loader || searchStore.loader">
@@ -166,10 +166,10 @@ const handleLayout = () => {
   saveLayoutToLocalStorage(isGrid.value ? 'grid' : 'row');
 };
 
-const handleBack = () => {
-  console.log('clicked on Back Btn');
-  router.go(-1)
-}
+// const handleBack = () => {
+//   console.log('clicked on Back Btn');
+//   router.go(-1)
+// }
 
 const card_wrapper = computed(() => {
   return isGrid.value ? 'grid-layout' : 'row-layout';
